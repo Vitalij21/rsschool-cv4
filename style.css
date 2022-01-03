@@ -1,3 +1,261 @@
-body {
+@import url("css/normalize.css");
 
+*,
+*::before,
+*::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+/*.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}*/
+.clearfix::after,
+.header::after,
+.grid::after { /*отменяем обтекание флоов для grid */
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+html {
+    font-size: 100%; /*предопределяем размер шрифта относительно применяемого экрана, т.е. для браузера ноута шрифт по умолчанию равный 16 пикселям*1rem с межстрочным интервалом * 1,375 */
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300; /*задаем по умолчанию жирность шрифта для всей страницы*/
+    color: #000; /*основной цвет текста, если все цифры одинаковы, то достаточно указать тольк первые три цифры*/
+    /*font-size:  16px; /*основной размер шрифта, также 16пикселей является шрифтом по умолчанию для браузеров*/
+    /*font-height: 22px; /*основной межстрочный интервал*/
+    font-size:  1rem; /*1rem = 16пикселей, указываем в относительных единицах*/
+    /*font-height: 22px; /*основной межстрочный интервал*/    
+   
+    font-size:  1rem; /*1rem = 16пикселей, указываем в относительных единицах*/
+    font-height: 1.375; /*множитель = вес шрифта 22пикселя делим на размер шрифта 16 пикселей = 1,375*/
+    
+    margin: 0;
+}
+h1 {
+    text-align: center;
+    
+}
+.page__cell {
+    max-width: 1180px;
+    margin: 0 auto; /*центрируем cell - сверху и снизу 0 пикселей, слева и справа поровну (auto)*/ 
+}
+.header {
+    border-bottom: 1px solid #cccccc; /*отрисовываем линию-границу блока снизу*/
+    padding: 1.875rem 0; /*отступ сверху и снизу по 30 пикселей, переводим в относительные единицы 30 (расстояние в пикселях сверху и снизу от лого)/16 (значение по умолчанию)=1,875 rem*/
+}
+
+.phone-number {
+    font-weight: 700; /*или bold? равнозначно*/
+    font-size: 1.5625rem;/*25 пикселей разделить на 16 пикселей по умолчанию*/
+    color: #000;
+    /*text-decoration: none;*/
+}
+
+.email-address {
+    color: #808080;
+    /*font-size: 16px=1rem; не прописываем, так как 16 пикселей у браузера по умолчанию*/
+    /*text-decoration: none;*/
+}
+.phone-number,
+.email-address {
+    text-decoration: none;
+}
+.header__logo{
+    float: left; /*обтекание справа*/
+}
+.header__contact{
+    float:  right; /*обтекание слева*/
+    text-align: right; /*смещаем текст email к правому краю дива*/
+}
+/*.clear{
+    clear:both; //1.очищает обтекание float слева и справа; 2. добавляем clear к тегу header 3.сейчас принято использовать псевдоэлемент - .clearfix::after, куда мы и добавляем тег header::after
+}
+.nav{
+    font-size: 1.1875rem; /*задаем размер шрифта для пунктов меню: 19пикселей/16=1,18375*/
+}
+.nav__list {
+    list-style: none; /*убираем точки перед меню*/
+    margin: 0; /*убираем отступы по умолчанию*/
+    padding: 0; /*убираем отступы по умолчанию*/
+    display: -webkit-box; /*прописываем флекс для страрых браузеров*/
+    display: -ms-flexbox; /*прописываем флекс для страрых браузеров*/
+    display: flex; /*выстраиваем элементы меню в одну линию*/
+    -webkit-box-pack: justify; /*прописываем justify-content для страрых браузеров*/
+    -ms-flex-pack: justify; /*прописываем justify-content для страрых браузеров*/
+    justify-content: space-between;/растягиваем флекс-элементы - элементы меню на всю ширину страницы*/    
+}
+.link{
+    color: #000;
+    text-decoration: underline; /*применяем подчеркивание ссылок*/
+}
+.link:hover{
+    color: #f44336; /*добавляем эффект замены цвета при наведении на пункт меню*/
+}
+.nav__link{
+    text-decoration: none; /*убираем подчеркивание ссылок пунктов меню*/
+    padding: 1.3125rem; /*задаем отступы слева, сверху, снизу равную 21/16=*/
+    display: block; /*так как ссылки меню инлайновые элементы, то у них нет отступов сверху и снизу, поэтому применяем к ним дисплей блок чтобы отступы отработали*/
+}
+
+.slider__item {
+    /*height:30rem; //задаем высоту слайда*/
+    padding-top: 33.7%; /*задаем верхний отступ для изменения высоты изображения в зависимости от размера экрана*/
+    background-position:center center; //центрируем изображение
+    background-repeat: no-repeat;
+    background-size: cover; //чтобы изображение растягивалось на все пространство этого слайда 
+    -webkit-background-size: cover;
+}
+.slider .owl-dot span { /*задаем квадратики управения прокрутки слайдера*/
+    background: #fff; /*цвет по умолчанию*/
+    border: 1px solid #ccc; /*рамка квадратика*/
+    width: 1rem; /*ширина*/
+    height: 1rem; /*высота квадратика*/
+    display: block; /*делаем из инлайнового элемента span блочный элемент, для того чтобы прменились высота и ширина, для инляйнового эл-та мы не можем задавать высоту и ширину*/
+}
+.slider .owl-dot.active span,
+.slider .owl-dot.hover span {
+    background: #000;
+    border-color: #000;
+}
+.slider .owl-dot {
+    display: inline-block;
+    margin: 0 0.40625rem;
+}
+.slider .owl-dots {
+    text-align: center;
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0;
+    right: 0;
+}
+
+
+.headline {
+    text-align: center;
+    font-size: 2rem; //28/16=1.65
+    font-weight: 400;
+    margin: 2.75rem;
+}
+
+
+
+.grid__item {
+    float: left;
+    margin-right: 1.7%; /*20пикселей*100/1180пикселей (ширина блока cell)*/
+    margin-bottom: 1.7%; /*20пикселей*100/1180пикселей (ширина блока cell)*/ 
+    width: 49.15%;/*(100-1.7)/2=49.15*/
+    position: relative;
+}
+.grid__item:nth-of-type(2n) { /*2n - отбираем четные элементы*/
+    margin-right: 0; /*меняем для четных элементов отступ справа с 1,7% на 0*/  
+}
+.grid__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.5); /*цвет черный и прозрачность 50%*/
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;    
+    transition: 0.5s; /*переход цвета с 0,5 до 0,7 будет 0,5сек*/
+}
+.grid__overlay:hover {    
+    background: rgba(0,0,0,.7); /*цвет черный и прозрачность 70%*/    
+}
+
+.grid__picture {
+    min-width: 100%; /*делаем картинки резиновыми*/
+    display: block; /*так как картинки инлайновые элементы, то перезаписываем их в блочные, чтобы убрать отступы снизу у картинок, присущие инлайновым элементам*/
+}
+.grid__link {
+    color: #fff;
+    text-align: center;
+    font-size: 1.8125rem; /*29/16=1.8125*/
+}
+.grid__text,
+.icon-circle__picture { /*для выравнивания текста посередине блока и для выравнивания иконок по высоте*/
+    position: relative;
+    top: 50%; /*сдвигаем текст вниз на 50% высоты блока до верха текста*/
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%); /*для IE9*/
+    transform: translateY(-50%); /*поднимаем текст на 50% от его высоты вверх*/    
+}
+.icon-circle {
+    display: inline-block; /*так как span инлайновый элемент, а нам нужно задавать высоту и ширину*/
+    width: 6.25rem;
+    height: 6.25rem;
+    background: #ffb9b3;
+    text-align: center;
+    border-radius: 50%; /*делаем из квадрата круг*/
+    padding: 1.1rem;
+}
+.icon-circle2 {
+    display: inline-block; /*так как span инлайновый элемент, а нам нужно задавать высоту и ширину*/
+    width: 6.25rem;
+    height: 6.25rem;
+    background: #fff;
+    text-align: center;
+    border-radius: 50%; /*делаем из квадрата круг*/
+    padding: 1.1rem;
+    border: 1px solid gray;
+}
+.icon-circle__picture {
+    min-width: 100%;   
+}
+.adventage {
+    display: -webkit-box;
+    display: -ms-flexbox;    
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row; /*выстраиваем элементы в один ряд*/
+}
+.adventage__item {
+    width: 30%;
+    text-align: center; /*выравниваем иконки по центру*/
+    margin-right: 8%;
+}
+.adventage__item:nth-of-type(3n) { /*отменяем отступ справа у третьего элемента*/
+    margin-right: 0;
+}
+/*.adventage__item:last-child(3n) { /*отменяем отступ справа у третьего элемента
+    margin-right: 0;
+} альтернативная запись отменяющая отступ справа у последнего с правого края элемента*/
+.adventage__headline {
+    font-size: 1.25rem;
+    margin: 0 0 0.8;
+}
+adventage__icon {
+    margin-bottom: 1.2rem; /*задаем отступ от иконки снизу*/
+}
+.page__row-footer {
+    background: #595959;
+    color: #fff;
+    margin-top: 4.375rem;
+}
+.footer__copyright {
+    text-align: right;
+}
+.footer__link {
+    /*color: #fff; так как в родителе данного элемента .page__row-foooter уже задан белый цвет, то грамотнее вместо цвета задать наследование его у родительского элемента - color: inherit;*/
+    color: inherit;
+    text-decoration: none; /*убираем подчеркивание с ссылки*/
+}
+.footer__link:hover {
+    text-decoration: underline;v/*для появления подчеркивания при наведении курсором*/
+}
+footer {
+    padding: 1.2rem 0; /*сверху и снизу по 1,2rem, а по бокам по 0*/
+}
+/*.footer {
+    padding: 1.2rem 0;
+}*/
